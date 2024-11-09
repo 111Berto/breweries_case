@@ -1,0 +1,85 @@
+{
+    "name": "pl_breweries",
+    "properties": {
+        "activities": [
+            {
+                "name": "0_ntbk_breweries_to_bronze",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/programas_python/projetos_e_teste/0_ntbk_breweries_to_bronze"
+                },
+                "linkedServiceName": {
+                    "referenceName": "ls_dtbks",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "2_ntbk_silver_to_gold",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "1_ntbk_bronze_to_silver",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/programas_python/projetos_e_teste/2_ntbk_silver_to_gold"
+                },
+                "linkedServiceName": {
+                    "referenceName": "ls_dtbks",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "1_ntbk_bronze_to_silver",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "0_ntbk_breweries_to_bronze",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/programas_python/projetos_e_teste/1_ntbk_bronze_to_silver"
+                },
+                "linkedServiceName": {
+                    "referenceName": "ls_dtbks",
+                    "type": "LinkedServiceReference"
+                }
+            }
+        ],
+        "folder": {
+            "name": "case_breweries"
+        },
+        "annotations": []
+    }
+}
