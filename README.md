@@ -1,7 +1,7 @@
 # Breweries Case  
 
 ## Objective  
-The goal of this test is to assess your skills in consuming data from an API, transforming, and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.  
+The goal of this test is to assess the skills in consuming data from an API, transforming, and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.  
 
 ## Technologies Used  
 For the implementation of the solution, **Python** and **PySpark** were employed for data processing, with **Databricks** being used to execute the ELT (Extract, Load and Tranform) process in the Medallion layers (bronze, silver, and gold). Pipeline orchestration was handled through **Azure Data Factory** (ADF).  
